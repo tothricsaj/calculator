@@ -6,6 +6,7 @@ class App extends React.Component{
     super(props)
     this.state = {
       numbers: [0,1,2,3,4,5,6,7,8,9],
+      operators: ['+', '-', '*', '/', '=']
     }
 
     this.renderElements = this.renderElements.bind(this)
@@ -14,7 +15,7 @@ class App extends React.Component{
   renderElements(arr=[], elemClass='defaultClass') {
     return arr.map((el, i) => {
       return (
-        <li key={i} className={elemClass}>
+        <li key={elemClass + i} className={elemClass}>
           {el}
         </li>
       )
@@ -27,7 +28,8 @@ class App extends React.Component{
         <h2>Calculator</h2>
         <div className="calc">
           <div className="calcDisplay"></div>
-          <ul>{this.renderElements(this.state.numbers, 'calcNumber')}</ul>
+          <ul className="calcNumbersWrapper">{this.renderElements(this.state.numbers, 'calcNumber')}</ul>
+          <ul className="calcOperatorsWrapper">{this.renderElements(this.state.operators, 'calcOperator')}</ul>
         </div>
       </div>
     );
