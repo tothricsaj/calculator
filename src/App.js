@@ -32,8 +32,8 @@ class App extends React.Component{
 
       } else if((/[\+\-\*\/]/g).test(elem)) {
 
-      this.setState({...this.state, leftOperandus: 1/*this.state.operandusDigits.join('')*/})
-        this.setState({...this.state, ...{operator: elem, operandusDigits: []}})
+        // this.setState({...this.state, leftOperandus: 1/*this.state.operandusDigits.join('')*/})
+        this.setState({...this.state, ...{operator: elem, operandusDigits: [], leftOperandus: this.state.operandusDigits.join('')}})
 
         console.log('joined digits' + this.state.operandusDigits.join(''))
         console.log('leftoperandus ' + this.state.leftOperandus)
