@@ -12,7 +12,7 @@ class App extends React.Component{
       leftOperandus: null,
       rightOperandus: null,
       result: 0,
-      leftValue: true,
+      displayRes: [],
     }
 
     this.renderElements = this.renderElements.bind(this)
@@ -28,9 +28,11 @@ class App extends React.Component{
       if((/\d+/g).test(elem)) {
 
         this.state.operandusDigits.push(elem)
+        this.state.displayRes.push(elem)
 
       } else if((/[\+\-\*\/]/g).test(elem)) {
 
+        this.state.displayRes.push(elem)
         this.setState({...this.state, ...{operator: elem, operandusDigits: [], leftOperandus: this.state.operandusDigits.join('')}})
 
       } else if(elem === '=') {
@@ -97,7 +99,8 @@ class App extends React.Component{
         rightOperandus: null,
         operandusDigits: [],
         operator: '',
-        result: 0
+        result: 0,
+        displayRes: []
       }
     })
   }
@@ -107,7 +110,15 @@ class App extends React.Component{
       <div className="App">
         <h2>Calculator</h2>
         <div className="calc">
-        <div className="calcDisplay">{this.state.result}</div>
+        <div className="calcDisplay">
+          {
+            (
+              !!!this.state.result
+              ? this.state.displayRes.join('')
+              : this.state.result
+            )
+          }
+        </div>
           <div onClick={this.emptyOperandusStaff}>C</div>
           <ul className="calcNumbersWrapper">{this.renderElements(this.state.numbers, 'calcNumber')}</ul>
           <ul className="calcOperatorsWrapper">{this.renderElements(this.state.operators, 'calcOperator')}</ul>
