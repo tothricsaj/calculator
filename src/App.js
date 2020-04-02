@@ -17,7 +17,7 @@ class App extends React.Component{
 
     this.renderElements = this.renderElements.bind(this)
     this.operate = this.operate.bind(this)
-    // this.setElementsToOperate = this.setElementsToOperate.bind(this)
+    this.emptyOperandusStaff = this.emptyOperandusStaff.bind(this)
   }
 
   renderElements(arr=[], elemClass='defaultClass') {
@@ -104,7 +104,17 @@ class App extends React.Component{
     this.setState({...this.state, result: tmp})
   }
 
-  
+  emptyOperandusStaff() {
+    this.setState({
+      ...this.state,
+      ...{
+        leftOperandus: null,
+        rightOperandus: null,
+        operandusDigits: [],
+        operator: ''
+      }
+    })
+  }
 
   render() {
     return (
@@ -112,6 +122,7 @@ class App extends React.Component{
         <h2>Calculator</h2>
         <div className="calc">
         <div className="calcDisplay">{this.state.result}</div>
+          <div onClick={this.emptyOperandusStaff}>C</div>
           <ul className="calcNumbersWrapper">{this.renderElements(this.state.numbers, 'calcNumber')}</ul>
           <ul className="calcOperatorsWrapper">{this.renderElements(this.state.operators, 'calcOperator')}</ul>
         </div>
