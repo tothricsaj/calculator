@@ -39,10 +39,10 @@ class App extends React.Component{
         console.log('leftoperandus ' + this.state.leftOperandus)
       } else if(elem === '=') {
 
-        this.setState({...this.state, rightOperandus: 1/*this.state.operandusDigits.join('')*/})
+        this.setState({...this.state, ...{rightOperandus: this.state.operandusDigits.join('')}})
 
-        let num1 = this.state.rightOperandus
-        let num2 = this.state.leftOperandus
+        let num1 = parseInt(this.state.leftOperandus)
+        let num2 = parseInt(this.state.operandusDigits.join(''))
         let operator = this.state.operator
 
         this.operate(num1, num2, operator)
@@ -71,11 +71,22 @@ class App extends React.Component{
   }
 
   operate(num1, num2, operator) {
+    console.log('operate is called')
     let tmp = 0;
+    console.table({
+        num1: num1,
+        num2: num2,
+        op: operator
+      })
     if(!!num1 && !!num2) {
       switch(operator) {
         case '+':
           tmp = num1 + num2
+          console.table({
+            num1: num1,
+            num2: num2,
+            op: operator
+          })
           break
         case '-':
           tmp = num1 - num2
