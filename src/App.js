@@ -89,13 +89,15 @@ class App extends React.Component{
   }
 
   emptyOperandusStaff() {
+    console.log('called')
     this.setState({
       ...this.state,
       ...{
         leftOperandus: null,
         rightOperandus: null,
         operandusDigits: [],
-        operator: ''
+        operator: '',
+        result: 0
       }
     })
   }
