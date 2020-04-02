@@ -8,6 +8,7 @@ class App extends React.Component{
       numbers: [0,1,2,3,4,5,6,7,8,9],
       operators: ['+', '-', '*', '/', '='],
       operator: '',
+      operanduses: [],
       leftOperandus: null,
       rightOperandus: null,
       result: 0,
@@ -20,27 +21,32 @@ class App extends React.Component{
   }
 
   renderElements(arr=[], elemClass='defaultClass') {
-    let setElementsToOperate = () => {
+    let setElementsToOperate = (e) => {
+      // let elem = this.el
+      // let classToCheck = this.elemClass
       
-      console.log('I am called')
-      console.log(this.el)
-      switch(this.elemClass) {
-        case 'calcNumber':
-          if(this.state.leftValue) {
-            this.setState({...this.state, leftOperandus: parseInt(this.el)})
-            this.setState({...this.state, leftValue: false})
-          } else {
-            this.setState({...this.state, rightOperandus: parseInt(this.el)})
-          }
-          break
-        case 'calcOperator':
-          this.setState({...this.state, operator: this.el})
-          break
-        default:
-          console.log('Fail')
-          return null
-      }
-      console.table(this.state)
+      // console.log('I am called')
+      // console.log(elem)
+      // switch(classToCheck) {
+      //   case 'calcNumber':
+      //     if(this.state.leftValue) {
+      //       this.setState({...this.state, leftOperandus: parseInt(elem)})
+      //       this.setState({...this.state, leftValue: false})
+      //     } else {
+      //       this.setState({...this.state, rightOperandus: parseInt(elem)})
+      //     }
+      //     break
+      //   case 'calcOperator':
+      //     this.setState({...this.state, operator: this.el})
+      //     break
+      //   default:
+      //     console.error('Wrong elemClass')
+      //     return null
+      // }
+
+      this.state.operanduses.push(e.target.innerHTML)
+      console.log(e.target.innerHTML)
+      console.table(this.state.operanduses)
     }
 
     return arr.map((el, i) => {
