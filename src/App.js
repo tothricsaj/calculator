@@ -28,15 +28,11 @@ class App extends React.Component{
       if((/\d+/g).test(elem)) {
 
         this.state.operandusDigits.push(elem)
-        console.log(this.state.operandusDigits)
 
       } else if((/[\+\-\*\/]/g).test(elem)) {
 
-        // this.setState({...this.state, leftOperandus: 1/*this.state.operandusDigits.join('')*/})
         this.setState({...this.state, ...{operator: elem, operandusDigits: [], leftOperandus: this.state.operandusDigits.join('')}})
 
-        console.log('joined digits' + this.state.operandusDigits.join(''))
-        console.log('leftoperandus ' + this.state.leftOperandus)
       } else if(elem === '=') {
 
         this.setState({...this.state, ...{rightOperandus: this.state.operandusDigits.join('')}})
@@ -46,8 +42,6 @@ class App extends React.Component{
         let operator = this.state.operator
 
         this.operate(num1, num2, operator)
-
-        console.table(this.state)
       }
       
     }
@@ -71,22 +65,12 @@ class App extends React.Component{
   }
 
   operate(num1, num2, operator) {
-    console.log('operate is called')
     let tmp = 0;
-    console.table({
-        num1: num1,
-        num2: num2,
-        op: operator
-      })
+
     if(!!num1 && !!num2) {
       switch(operator) {
         case '+':
           tmp = num1 + num2
-          console.table({
-            num1: num1,
-            num2: num2,
-            op: operator
-          })
           break
         case '-':
           tmp = num1 - num2
