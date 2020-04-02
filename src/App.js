@@ -8,7 +8,7 @@ class App extends React.Component{
       numbers: [0,1,2,3,4,5,6,7,8,9],
       operators: ['+', '-', '*', '/', '='],
       operator: '',
-      operanduses: [],
+      operandusDigits: [],
       leftOperandus: null,
       rightOperandus: null,
       result: 0,
@@ -22,31 +22,34 @@ class App extends React.Component{
 
   renderElements(arr=[], elemClass='defaultClass') {
     let setElementsToOperate = (e) => {
-      // let elem = this.el
-      // let classToCheck = this.elemClass
-      
-      // console.log('I am called')
-      // console.log(elem)
-      // switch(classToCheck) {
-      //   case 'calcNumber':
-      //     if(this.state.leftValue) {
-      //       this.setState({...this.state, leftOperandus: parseInt(elem)})
-      //       this.setState({...this.state, leftValue: false})
-      //     } else {
-      //       this.setState({...this.state, rightOperandus: parseInt(elem)})
-      //     }
-      //     break
-      //   case 'calcOperator':
-      //     this.setState({...this.state, operator: this.el})
-      //     break
-      //   default:
-      //     console.error('Wrong elemClass')
-      //     return null
-      // }
 
-      this.state.operanduses.push(e.target.innerHTML)
-      console.log(e.target.innerHTML)
-      console.table(this.state.operanduses)
+      let elem = e.target.innerHTML
+
+      if((/\d+/g).test(elem)) {
+
+        this.state.operandusDigits.push(elem)
+        console.log(this.state.operandusDigits)
+
+      } else if((/[\+\-\*\/]/g).test(elem)) {
+
+      this.setState({...this.state, leftOperandus: 1/*this.state.operandusDigits.join('')*/})
+        this.setState({...this.state, ...{operator: elem, operandusDigits: []}})
+
+        console.log('joined digits' + this.state.operandusDigits.join(''))
+        console.log('leftoperandus ' + this.state.leftOperandus)
+      } else if(elem === '=') {
+
+        this.setState({...this.state, rightOperandus: 1/*this.state.operandusDigits.join('')*/})
+
+        let num1 = this.state.rightOperandus
+        let num2 = this.state.leftOperandus
+        let operator = this.state.operator
+
+        this.operate(num1, num2, operator)
+
+        console.table(this.state)
+      }
+      
     }
 
     return arr.map((el, i) => {
