@@ -12,7 +12,7 @@ class App extends React.Component{
       leftOperandus: null,
       rightOperandus: null,
       result: 0,
-      displayRes: [],
+      displayRes: '',
     }
 
     this.renderElements = this.renderElements.bind(this)
@@ -28,11 +28,11 @@ class App extends React.Component{
       if((/\d+/g).test(elem)) {
 
         this.state.operandusDigits.push(elem)
-        this.state.displayRes.push(elem)
+        this.setState({...this.state, displayRes: this.state.displayRes + elem})
 
       } else if((/[\+\-\*\/]/g).test(elem)) {
 
-        this.state.displayRes.push(elem)
+        this.setState({...this.state, displayRes: this.state.displayRes + elem})
         this.setState({...this.state, ...{operator: elem, operandusDigits: [], leftOperandus: this.state.operandusDigits.join('')}})
 
       } else if(elem === '=') {
@@ -100,7 +100,7 @@ class App extends React.Component{
         operandusDigits: [],
         operator: '',
         result: 0,
-        displayRes: []
+        displayRes: ''
       }
     })
   }
@@ -114,7 +114,7 @@ class App extends React.Component{
           {
             (
               !!!this.state.result
-              ? this.state.displayRes.join('')
+              ? this.state.displayRes
               : this.state.result
             )
           }
