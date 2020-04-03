@@ -32,7 +32,15 @@ class App extends React.Component{
 
       } else if((/[\+\-\*\/]/g).test(elem)) {
 
-        this.setState({...this.state, displayRes: this.state.displayRes + elem})
+        console.log('Now, operator')
+        console.log( this.state.displayRes + elem)
+
+        this.setState(Object.assign(
+          this.state,
+          {displayRes: this.state.displayRes + elem}
+        ))
+
+        console.log(this.state.displayRes)
         this.setState({...this.state, ...{operator: elem, operandusDigits: [], leftOperandus: this.state.operandusDigits.join('')}})
 
       } else if(elem === '=') {
