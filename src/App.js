@@ -127,7 +127,7 @@ class App extends React.Component{
             )
           }
         </div>
-          <div onClick={this.emptyOperandusStaff}>C</div>
+          <div onClick={this.emptyOperandusStaff} className={"remover"}>C</div>
           <ul className="calcNumbersWrapper">{this.renderElements(this.state.numbers, 'calcNumber')}</ul>
           <ul className="calcOperatorsWrapper">{this.renderElements(this.state.operators, 'calcOperator')}</ul>
         </div>
