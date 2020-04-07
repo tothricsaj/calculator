@@ -126,6 +126,11 @@ class App extends React.Component{
               : this.state.result
             )
           }
+          {
+            this.state.result === 0 && this.state.displayRes === ''
+            ? 0
+            : null
+          }
         </div>
           <div onClick={this.emptyOperandusStaff} className={"remover"}>C</div>
           <ul className="calcNumbersWrapper">{this.renderElements(this.state.numbers, 'calcNumber')}</ul>
