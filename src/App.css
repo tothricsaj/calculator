@@ -9,7 +9,7 @@
 
 .calc {
   width: 288px;
-  height: 395px;
+  height: 365px;
   border: 1px solid;
   margin: auto;
 }
@@ -39,4 +39,52 @@
   background-color: orange;
   font-weight: 700;
   cursor: pointer;
+}
+
+.calcNumbersWrapper {
+  width: 80%;
+  height: 50%;
+  margin: 0;
+  padding: 0;
+  float: left;
+  clear: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap
+}
+
+.calcNumber {
+  list-style-type: none;
+  width: calc(33.33% - 2px);
+  height: calc(33.33% - 2px);
+  cursor: pointer;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calcNumber:last-of-type {
+  margin-right: 66.67%;
+}
+
+.calcOperatorsWrapper {
+  width: 20%;
+  height: 50%;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.calcOperator {
+  width: calc(100% - 2px);
+  height: calc(20% - 2px);
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  cursor: pointer;
+  color: orange;
 }
